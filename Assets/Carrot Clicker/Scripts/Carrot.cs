@@ -24,16 +24,16 @@ public class Carrot : MonoBehaviour
     {
         initialCarrotScale = carrotRendererTransform.localScale;
 
-        InputManager.OnObjectClicked += OnObjectClickedCallBack;
+        InputManager.OnCarrotClicked += OnCarrotClickedCallBack;
     }
 
     private void OnDestroy()
     {
-        InputManager.OnObjectClicked -= OnObjectClickedCallBack;
+        InputManager.OnCarrotClicked -= OnCarrotClickedCallBack;
 
     }
 
-    private void OnObjectClickedCallBack()
+    private void OnCarrotClickedCallBack()
     {
         // Animate Carrot
         AnimateCarrotsOnClick();

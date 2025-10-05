@@ -4,8 +4,8 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     [Header("Actions")]
-    public static Action OnObjectClicked;
-    public static Action<Vector2> OnObjectClickedPosition;
+    public static Action OnCarrotClicked;
+    public static Action<Vector2> OnCarrotClickedPosition;
 
     void Update()
     {
@@ -27,7 +27,7 @@ public class InputManager : MonoBehaviour
 
         Debug.Log($"Colidiu com {hit.name}");
 
-        OnObjectClicked?.Invoke(); // Caso esse Objeto receba a colisão, chamamos um Evento
-        OnObjectClickedPosition?.Invoke(worldPosition);
+        OnCarrotClicked?.Invoke(); // Caso esse Objeto receba a colisão, chamamos um Evento
+        OnCarrotClickedPosition?.Invoke(worldPosition);
     }
 }

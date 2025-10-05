@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef32b43851296d94cb893c9825166ea3, type: 3}
+  m_Name: 01_Upgrade_BunnyPhobia
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 7a6288fc2cde86f498e92c3ae4eb924d, type: 3}
+  title: Bunny Phobhia
+  subTitle: buy buy buy
+  cpsPerLevel: 0.2
+  basePrice: 600
+  coefficient: 1.17

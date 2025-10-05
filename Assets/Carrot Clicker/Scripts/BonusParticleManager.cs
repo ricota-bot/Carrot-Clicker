@@ -13,14 +13,14 @@ public class BonusParticleManager : MonoBehaviour
 
     private void Awake()
     {
-        InputManager.OnObjectClickedPosition += OnObjectClickedPositionCallBack;
+        InputManager.OnCarrotClickedPosition += OnCarrotClickedPositionCallBack;
     }
 
 
     private void OnDestroy()
     {
 
-        InputManager.OnObjectClickedPosition -= OnObjectClickedPositionCallBack;
+        InputManager.OnCarrotClickedPosition -= OnCarrotClickedPositionCallBack;
 
     }
 
@@ -49,7 +49,7 @@ public class BonusParticleManager : MonoBehaviour
         return Instantiate(bonusParticlePrefab, transform);
     }
 
-    private void OnObjectClickedPositionCallBack(Vector2 position)
+    private void OnCarrotClickedPositionCallBack(Vector2 position)
     {
         BonusParticle bonusParticleInstance = bonusParticlePool.Get();
         bonusParticleInstance.transform.position = position;
