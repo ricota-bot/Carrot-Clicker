@@ -3,6 +3,11 @@ using UnityEngine;
 public class UpgradeManager : MonoBehaviour
 {
     public static UpgradeManager Instance;
+
+    [Header("Settings")]
+    [Tooltip("Value in Hertz")]
+    [SerializeField] private int addCarrotsFrequency;
+
     private void Awake()
     {
         if (Instance == null)
@@ -13,14 +18,15 @@ public class UpgradeManager : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("AddCarrots", 1, 1);
+        InvokeRepeating("AddCarrots", 1, 1f/ addCarrotsFrequency);
+        
     }
 
     private void AddCarrots()
     {
         double totalCarrots = GetCarrotsPerSecond();
 
-        CarrotManager.instance.AddCarrots(totalCarrots);
+        CarrotManager.instance.AddCarrots(totalCarrots/ addCarrotsFrequency);
 
         Debug.Log($"Carrots per second: {GetCarrotsPerSecond()}");
     }

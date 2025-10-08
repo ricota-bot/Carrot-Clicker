@@ -84,7 +84,7 @@ public class CarrotManager : MonoBehaviour
         else
             return false;
     }
-    private void UpdateCarrotsText() => carrotsText.text = DoubleUtilities.ToCustomScientificNotation(totalCarrotsCount) + " Carrots!";
+    private void UpdateCarrotsText() => carrotsText.text = DoubleUtilities.ToIdleNotation(totalCarrotsCount) + " Carrots!";
     private void UpdateCarrotsPerSecondText() =>
         carrotsPerSecondText.text = " carrots per seconds: " + UpgradeManager.Instance.GetCarrotsPerSecond().ToString("F0");
 
