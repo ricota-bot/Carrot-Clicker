@@ -18,9 +18,6 @@ public class CarrotManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI carrotsText;
     [SerializeField] private TextMeshProUGUI carrotsPerSecondText;
 
-    [Header("References")]
-    [SerializeField] private UpgradeManager upgradeManager;
-
     private void Awake()
     {
         #region Singleton
@@ -52,31 +49,18 @@ public class CarrotManager : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+            AddCarrots(totalCarrotsCount);
+    }
 
 
     #region ACTIONS
-    private void OnFrenzzyModeStartedCallBack()
-    {
-        carrotIncrement = frenzyModeMultipler;
-
-    }
-
-    private void OnFrenzzyModeStoppedCallBack()
-    {
-        carrotIncrement = baseCarrotMultipler;
-    }
-
-
-    private void OnCarrotClickedCallBack()
-    {
-        AddCarrots(carrotIncrement);
-
-    }
-
-    private void OnUpgradeButtonPurchasedCallBack(int obj)
-    {
-        UpdateCarrotsPerSecondText();
-    }
+    private void OnCarrotClickedCallBack() => AddCarrots(carrotIncrement);
+    private void OnFrenzzyModeStartedCallBack() => carrotIncrement = frenzyModeMultipler;
+    private void OnFrenzzyModeStoppedCallBack() => carrotIncrement = baseCarrotMultipler;
+    private void OnUpgradeButtonPurchasedCallBack(int obj) => UpdateCarrotsPerSecondText();
 
     #endregion
 
@@ -100,11 +84,9 @@ public class CarrotManager : MonoBehaviour
         else
             return false;
     }
-    private void UpdateCarrotsText() => carrotsText.text = totalCarrotsCount.ToString("F0") + " Carrots!";
-    private void UpdateCarrotsPerSecondText()
-    {
-        carrotsPerSecondText.text = " carrots per seconds: " + upgradeManager.GetCarrotsPerSecond().ToString("F0");
-    }
+    private void UpdateCarrotsText() => carrotsText.text = DoubleUtilities.ToCustomScientificNotation(totalCarrotsCount) + " Carrots!";
+    private void UpdateCarrotsPerSecondText() =>
+        carrotsPerSecondText.text = " carrots per seconds: " + UpgradeManager.Instance.GetCarrotsPerSecond().ToString("F0");
 
 
     #region SAVE and LOAD
