@@ -9,9 +9,6 @@ public class AutoClickManager : MonoBehaviour
     [Header("Data")]
     [SerializeField] private int level;
 
-    [Header("Settings")]
-    [SerializeField] private float carrotsPerSecond;
-
     [Header("Rotator")]
     [SerializeField] private Transform rotator;
     [SerializeField] private float rotatorSpeed;
@@ -21,8 +18,6 @@ public class AutoClickManager : MonoBehaviour
 
 
     private List<GameObject> bunnyPool = new List<GameObject>();
-
-
 
     private void Awake()
     {
@@ -43,9 +38,6 @@ public class AutoClickManager : MonoBehaviour
     private void Start()
     {
         LoadData();
-        carrotsPerSecond = level * 1;
-        InvokeRepeating("AddCarrotsPerSecond", 1, 1);
-
         //SpawnBunny();
 
         CreatePool();
@@ -59,16 +51,14 @@ public class AutoClickManager : MonoBehaviour
 
     private void CheckIfCanUpgrade(int index)
     {
-        if (index == 0)
+        if (index == 0) // Caso seja o primeiro Upgrade -> Esse é o AutoClicker
             UpgradeCarrotsLevelButton();
 
     }
 
-    public void UpgradeCarrotsLevelButton()
+    public void UpgradeCarrotsLevelButton() // Upgrade apenas no Carrot Clicker
     {
         level++;
-        carrotsPerSecond = level * 1;
-
         if (level <= maxBunnies)
             ActivateBunny(level - 1); // ativa o próximo
     }
@@ -110,11 +100,6 @@ public class AutoClickManager : MonoBehaviour
     {
         if (index >= 0 && index < bunnyPool.Count)
             bunnyPool[index].SetActive(true);
-    }
-
-    private void AddCarrotsPerSecond()
-    {
-        CarrotManager.instance.AddCarrots(carrotsPerSecond);
     }
 
     private void LoadData()

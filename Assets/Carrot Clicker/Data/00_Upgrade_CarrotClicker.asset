@@ -15,6 +15,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: cbb62f5b129f61f49aa3aa3a38975eeb, type: 3}
   title: Carrot Clicker
   subTitle: buy buy buy
-  cpsPerLevel: 0.1
+  cpsPerLevel: 1
   basePrice: 200
   coefficient: 1.17

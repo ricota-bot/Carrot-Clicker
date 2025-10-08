@@ -15,6 +15,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 7a6288fc2cde86f498e92c3ae4eb924d, type: 3}
   title: Bunny Phobhia
   subTitle: buy buy buy
-  cpsPerLevel: 0.2
+  cpsPerLevel: 2
   basePrice: 600
   coefficient: 1.17

@@ -62,6 +62,8 @@ public class ShopManager : MonoBehaviour
             IncreaseUpgradeLevel(index);
         Debug.Log("Dont have money for this !!");
 
+        // Posso Spawnar uma Particula escrito que não tem dinheiro, igual spawnei o Click do FeedBack da cenoura
+
     }
 
     // QUANDO CLICAMOS NO BOTÃO É PRA CHAMAR ESSE METODO TAMBEM
@@ -113,4 +115,7 @@ public class ShopManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("Upgrade" + index, upgradeLevel);
     }
+
+    public UpgradeButtonData[] GetUpgradeButtonsData() => upgradeButtonDatas;
+
 }

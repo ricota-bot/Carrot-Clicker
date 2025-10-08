@@ -15,6 +15,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 3850712d863ea184db0a204c819a292e, type: 3}
   title: Coin Coin Coin
   subTitle: buy buy buy
-  cpsPerLevel: 0.1
+  cpsPerLevel: 2
   basePrice: 1200
   coefficient: 1.17

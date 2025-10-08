@@ -16,6 +16,10 @@ public class CarrotManager : MonoBehaviour
 
     [Header("Elements")]
     [SerializeField] private TextMeshProUGUI carrotsText;
+    [SerializeField] private TextMeshProUGUI carrotsPerSecondText;
+
+    [Header("References")]
+    [SerializeField] private UpgradeManager upgradeManager;
 
     private void Awake()
     {
@@ -33,6 +37,8 @@ public class CarrotManager : MonoBehaviour
         InputManager.OnCarrotClicked += OnCarrotClickedCallBack;
         Carrot.OnFrenzzyModeStarted += OnFrenzzyModeStartedCallBack;
         Carrot.OnFrenzzyModeStopped += OnFrenzzyModeStoppedCallBack;
+
+        ShopManager.OnUpgradeButtonPurchased += OnUpgradeButtonPurchasedCallBack;
     }
     private void OnDestroy()
     {
@@ -41,7 +47,12 @@ public class CarrotManager : MonoBehaviour
         InputManager.OnCarrotClicked -= OnCarrotClickedCallBack;
         Carrot.OnFrenzzyModeStarted -= OnFrenzzyModeStartedCallBack;
         Carrot.OnFrenzzyModeStopped -= OnFrenzzyModeStoppedCallBack;
+
+        ShopManager.OnUpgradeButtonPurchased -= OnUpgradeButtonPurchasedCallBack;
+
     }
+
+
 
     #region ACTIONS
     private void OnFrenzzyModeStartedCallBack()
@@ -62,7 +73,15 @@ public class CarrotManager : MonoBehaviour
 
     }
 
+    private void OnUpgradeButtonPurchasedCallBack(int obj)
+    {
+        UpdateCarrotsPerSecondText();
+    }
+
     #endregion
+
+    [NaughtyAttributes.Button]
+    public void Add500Carrots() => AddCarrots(500);
 
     public void AddCarrots(double value)
     {
@@ -82,6 +101,11 @@ public class CarrotManager : MonoBehaviour
             return false;
     }
     private void UpdateCarrotsText() => carrotsText.text = totalCarrotsCount.ToString("F0") + " Carrots!";
+    private void UpdateCarrotsPerSecondText()
+    {
+        carrotsPerSecondText.text = " carrots per seconds: " + upgradeManager.GetCarrotsPerSecond().ToString("F0");
+    }
+
 
     #region SAVE and LOAD
     private void Save() => PlayerPrefs.SetString(totalCarrotsKey, totalCarrotsCount.ToString());
@@ -89,6 +113,7 @@ public class CarrotManager : MonoBehaviour
     {
         double.TryParse(PlayerPrefs.GetString(totalCarrotsKey), out totalCarrotsCount);
         UpdateCarrotsText();
+        UpdateCarrotsPerSecondText();
     }
     #endregion
 
