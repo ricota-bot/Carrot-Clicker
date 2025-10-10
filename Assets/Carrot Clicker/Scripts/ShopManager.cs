@@ -79,6 +79,18 @@ public class ShopManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Vamos chamar esse metodo dentro do DailyRewardManager "Ele so chama o metodo passando o levels"
+    /// </summary>
+    public void RewardUpgrade(int index, int levels)
+    {
+        for (int i = 0; i < levels; i++)
+        {
+            IncreaseUpgradeLevel(index);
+        }
+
+    }
+
     // ATUALIZAMOS A SUBTITULO E A PREÇO
     private void UpdateButtonsVisuals(int index)
     {

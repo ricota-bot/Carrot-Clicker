@@ -465,6 +465,7 @@ GameObject:
   - component: {fileID: 8159284265484592240}
   - component: {fileID: 1142018900705602121}
   - component: {fileID: 2365953125383599662}
+  - component: {fileID: 7771885366170679232}
   m_Layer: 5
   m_Name: Upgrade Button
   m_TagString: Untagged
@@ -513,14 +514,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_Color: {r: 0.14901961, g: 0.54509807, b: 0.86274517, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6a65a063be0aa2c43a36e75ec2fc815a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0cf6f33c60cbf8e4f871df150075575a, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -591,6 +592,21 @@ MonoBehaviour:
   subTitle: {fileID: 8148183174385159520}
   price: {fileID: 7510499294558693632}
   button: {fileID: 1142018900705602121}
+--- !u!114 &7771885366170679232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2510217193314909895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Shadow
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 6, y: -6}
+  m_UseGraphicAlpha: 1
 --- !u!1 &2527485757776569570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,7 +1030,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cbb62f5b129f61f49aa3aa3a38975eeb, type: 3}
+  m_Sprite: {fileID: 5578316256029624871, guid: 57b8c62f053be9e4aa10c0a5534715f3, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

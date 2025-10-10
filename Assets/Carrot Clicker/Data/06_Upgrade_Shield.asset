@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef32b43851296d94cb893c9825166ea3, type: 3}
-  m_Name: 01_Upgrade_BunnyPhobia
+  m_Name: 06_Upgrade_Shield
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 7a6288fc2cde86f498e92c3ae4eb924d, type: 3}
-  title: Bunny Phobhia
-  subTitle: buy buy buy
-  cpsPerLevel: 10
-  basePrice: 600
+  icon: {fileID: -8160572606424834482, guid: 57b8c62f053be9e4aa10c0a5534715f3, type: 3}
+  title: I'm Shinny Now
+  subTitle: Not a Pokemon
+  cpsPerLevel: 40
+  basePrice: 3800
   coefficient: 1.17

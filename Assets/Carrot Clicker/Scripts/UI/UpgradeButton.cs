@@ -30,7 +30,7 @@ public class UpgradeButton : MonoBehaviour
     public void UpdateVisuals(string subTitle, double price)
     {
         this.subTitle.text = subTitle;
-        this.price.text = price.ToString("F0");
+        this.price.text = DoubleUtilities.ToIdleNotation(price);
 
     }
 }
