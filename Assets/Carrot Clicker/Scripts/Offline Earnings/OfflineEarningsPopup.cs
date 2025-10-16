@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ public class OfflineEarningsPopup : MonoBehaviour
 
     public void Configure(string earningsText)
     {
-        offlineEarningsText.text = earningsText; // Posso formatar quando chamar o metodo Configure "F0"
+        offlineEarningsText.text = DoubleUtilities.ToIdleNotation(Double.Parse(earningsText)); // Posso formatar quando chamar o metodo Configure "F0"
     }
 
     public Button GetClaimButton() => claimButton;

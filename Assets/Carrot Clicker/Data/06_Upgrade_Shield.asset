@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef32b43851296d94cb893c9825166ea3, type: 3}
   m_Name: 06_Upgrade_Shield
   m_EditorClassIdentifier: 
-  icon: {fileID: -8160572606424834482, guid: 57b8c62f053be9e4aa10c0a5534715f3, type: 3}
-  title: I'm Shinny Now
-  subTitle: Not a Pokemon
-  cpsPerLevel: 40
-  basePrice: 3800
+  icon: {fileID: 3724336646486142709, guid: 57b8c62f053be9e4aa10c0a5534715f3, type: 3}
+  title: Protected Yourself
+  subTitle: World is cruel
+  cpsPerLevel: 50
+  basePrice: 9000
   coefficient: 1.17

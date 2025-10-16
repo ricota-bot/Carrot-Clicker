@@ -1,26 +1,38 @@
+using System;
 using UnityEngine;
 
+[RequireComponent(typeof(DailyRewardsUI))]
 public class DailyRewardsManager : MonoBehaviour
 {
-    private const string DAILYREWARDS_INDEX_KEY = "dailyRewardKey";
+    private const string DAILYREWARDS_INDEX_KEY = "DailyRewardKey";
+    private const string LAST_CLAIM_DATE_KEY = "LastClaimDateKey";
+
+    [Header("Actions")]
+    public static Action<bool> OnClaimIsPossible;
+
+    [Header("References")]
+    private DailyRewardsUI dailyRewardsUI;
 
     [Header("Elements")]
-    [SerializeField] private GameObject dailyRewardPanel;
     [SerializeField] private DailyRewardContainer[] dailyRewardContainers;
 
     [Header("Data")]
     [SerializeField] private DailyRewardsData[] dailyRewardsData;
+
+    private DateTime lastClaimDateTime;
 
     private int dailyRewardIndex;
 
     private void Awake()
     {
         LoadData();
+
     }
 
     private void Start()
     {
         InitializeDailyRewardsContainers();
+
     }
 
     private void InitializeDailyRewardsContainers()
@@ -30,7 +42,7 @@ public class DailyRewardsManager : MonoBehaviour
             string rewardAmount = DoubleUtilities.ToIdleNotation(dailyRewardsData[i].amount);
 
             if (dailyRewardsData[i].rewardType == EDailyRewardType.Upgrade)
-                rewardAmount = dailyRewardsData[i].amount.ToString("F0");
+                rewardAmount = dailyRewardsData[i].amount.ToString("F0") + " Level";
 
             Sprite icon = dailyRewardsData[i].icon;
             string day = $"Day 0{i + 1}";
@@ -42,7 +54,7 @@ public class DailyRewardsManager : MonoBehaviour
         }
     }
 
-    public void ClaimButtonCallBack()
+    public void ClaimRewards()
     {
         DailyRewardsData dailyReward = dailyRewardsData[dailyRewardIndex];
 
@@ -52,6 +64,32 @@ public class DailyRewardsManager : MonoBehaviour
         SaveData();
 
         UpdateRewardContainers();
+    }
+
+    public void CheckIfCanClaim()
+    {
+        TimeSpan timeAway = DateTime.Now.Subtract(lastClaimDateTime);
+
+        double elapsedHours = timeAway.TotalHours;
+        if (elapsedHours < 24)// Menor que 24 horas ou seja um dia
+        {
+            int hoursInSeconds = 60 * 60 * 24;
+            int secondsAway = hoursInSeconds - (int)timeAway.TotalSeconds;
+
+            dailyRewardsUI.InitializeTimer(secondsAway);
+            Debug.Log("TIMER");
+        }
+        else if (elapsedHours <= 0)
+        {
+            Debug.Log("CLAIM!");
+        }
+    }
+
+    public bool AllRewardsHaveBeenClaimed()
+    {
+        if (dailyRewardIndex > 6)
+            return true;
+        else return false;
     }
 
     private void UpdateRewardContainers()
@@ -89,24 +127,39 @@ public class DailyRewardsManager : MonoBehaviour
         ShopManager.Instance.RewardUpgrade(dailyRewardData.upgradeIndex, (int)dailyRewardData.amount);
     }
 
-    public void OpenButtonCallBack()
-    {
-        dailyRewardPanel.SetActive(true);
-
-    }
-
-    public void CloseButtonCallBack()
-    {
-        dailyRewardPanel.SetActive(false);
-    }
-
     private void LoadData()
     {
+        dailyRewardsUI = GetComponent<DailyRewardsUI>();
         dailyRewardIndex = PlayerPrefs.GetInt(DAILYREWARDS_INDEX_KEY);
+
+        if (LoadLastClaimDateTime())
+            CheckIfCanClaim();
+        //else
+        //    Debug.LogError("[Load Data] Not possible to Load your Data!");
     }
     private void SaveData()
     {
         PlayerPrefs.SetInt(DAILYREWARDS_INDEX_KEY, dailyRewardIndex);
+
+        SaveLastDateTime();
+    }
+
+
+    private bool LoadLastClaimDateTime()
+    {
+        string savedDate = PlayerPrefs.GetString(LAST_CLAIM_DATE_KEY);
+        bool validDateTime = DateTime.TryParse(savedDate, null, System.Globalization.DateTimeStyles.RoundtripKind, out lastClaimDateTime);
+
+        return validDateTime;
+    }
+
+    private void SaveLastDateTime()
+    {
+        string now = DateTime.Now.ToString("o");
+
+        PlayerPrefs.SetString(LAST_CLAIM_DATE_KEY, now);
+        PlayerPrefs.Save();
+        Debug.LogWarning($"[Daily Rewards] Salvou data: {now}");
     }
 }
 

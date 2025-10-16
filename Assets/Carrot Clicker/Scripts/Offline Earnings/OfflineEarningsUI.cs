@@ -6,17 +6,11 @@ public class OfflineEarningsUI : MonoBehaviour
     [Header("Elements")]
     [SerializeField] private OfflineEarningsPopup offlineEarningsPopup;
 
-
-    private void Start()
-    {
-        //offlineEarningsPopup.gameObject.SetActive(false);
-    }
-
     public void DisplayPopup(double earnings)
     {
-        offlineEarningsPopup.Configure(earnings.ToString("F0"));
+        offlineEarningsPopup.Configure(earnings.ToString("F0")); // Configura
 
-        offlineEarningsPopup.gameObject.SetActive(true);
+        offlineEarningsPopup.gameObject.SetActive(true); // Torna visivel
 
         offlineEarningsPopup.GetClaimButton().onClick.AddListener(() => ClaimButtonClickedCallBack(earnings));
     }
@@ -25,7 +19,6 @@ public class OfflineEarningsUI : MonoBehaviour
     {
         offlineEarningsPopup.gameObject.SetActive(false);
         CarrotManager.instance.AddCarrots(earnings);
-
 
     }
 }
